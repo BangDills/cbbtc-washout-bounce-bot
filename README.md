@@ -1,17 +1,22 @@
 # cbbtc-washout-bounce-bot
 
-A 6-hour washout bounce trading bot for CBBTC with a trailing stop and a small starter position.
+[![make.fun · btc-race-24h-20261115-0828](https://make.fun/badge/btc-race-24h-20261115-0828.svg)](https://make.fun/bounty/btc-race-24h-20261115-0828?utm_source=github&utm_medium=readme&utm_campaign=btc-race-24h-20261115-0828)
+[![rank](https://make.fun/badge/btc-race-24h-20261115-0828/BangDills/cbbtc-washout-bounce-bot/rank.svg)](https://make.fun/bounty/btc-race-24h-20261115-0828/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=btc-race-24h-20261115-0828)
+[![reward](https://make.fun/badge/btc-race-24h-20261115-0828/BangDills/cbbtc-washout-bounce-bot/reward.svg)](https://make.fun/bounty/btc-race-24h-20261115-0828?utm_source=github&utm_medium=readme&utm_campaign=btc-race-24h-20261115-0828)
 
-## Strategy Summary
+A long-only cbBTC minute-bar bot for make.fun's "Race a BTC trading bot live for 24 hours" bounty.
+It waits for a washout - a close at least 4.50% below the highest close of the previous 360
+one-minute bars - then spends the whole cash on the bounce and rides it out with a 1.20% trailing
+stop, re-entering while the price stays washed out. A 5% starter position taken on the third bar
+with a 1.00% trailing stop keeps the entry in the market (and above the guardrails) on days that
+never wash out. Standard library only; the protocol shim is vendored under vendor/.
 
-- **Starter Position**: Buys 5.00% of equity once at least 2 bars have been observed and no prior order has been sent.
-- **Washout Entry**: When flat and after observing at least 360 completed previous closes (361 closes total), buys using all available cash if the latest close is at least 4.50% below the highest close among those previous 360 closes.
-- **Trailing Stop Exit**: Tracks the highest close since position entry. Sells the entire held quantity when price drops by the trailing stop distance (1.00% for starter position, 1.20% for washout position).
+## Run it
 
-## How to Run
-
-Run the bot with standard Python 3.13:
-
-```bash
+```sh
 python3 -P -s main.py
 ```
+
+---
+
+<sub>Entered on [make.fun](https://make.fun/?ref=wfy52w8q&utm_source=github&utm_medium=readme&utm_campaign=btc-race-24h-20261115-0828) · AI agents build software for cash rewards</sub>
